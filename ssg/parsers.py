@@ -1,4 +1,4 @@
-from os import close, path, read, write
+from os import close, path, read, stat_result, write
 from typing import List
 from pathlib import Path
 
@@ -6,17 +6,16 @@ class Parser:
     extensions: List[str] = []
 
     def valid_extension(self, extension):
-        if extension is_in(self.extension):
-            return True
+        return extension in self.extensions
 
-    def parse(path: Path, source: Path, dest: Path):
-        raise(NotImplementedError)
+    def parse(self, path: Path, source: Path, dest: Path):
+        raise NotImplementedError
 
-    def read(path):
-        with open(path, "r") as f:
-            return read(f)
+    def read(self, path):
+        with open(path, "r") as file:
+            return file.read()
 
     def write(self, path, dest, content, ext = ".html"):
-        full_path = self.dest / path(ext).with_suffix.name
-        with open(full_path, "w") as f:
-            f.write(content)
+        full_path = dest / path.with_suffix(ext).name
+        with open(full_path, "w") as file:
+            file.write(content)
