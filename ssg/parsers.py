@@ -16,7 +16,7 @@ class Parser:
         with open(path, "r") as f:
             return read(f)
 
-    def write(path, dest, content, ext = ".html"):
+    def write(self, path, dest, content, ext = ".html"):
         full_path = self.dest / path(ext).with_suffix.name
         with open(full_path, "w") as f:
             f.write(content)
